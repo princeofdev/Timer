@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     projectSelect_search.addEventListener("change", function() {
         console.log("EventListener for Project Search Selecting. Value: ", this.value);
         fetchTasks_search(this.value);
+        initializeMultiselect();
         // fetchUserList(this.value);
     });
 });
@@ -112,7 +113,7 @@ function fetchTasks_search(projectId) {
                 </div>
                 <input type="text" class="form-control mt-2 comment" placeholder="Comments" />
                 <input type="number" class="form-control mt-2 time" placeholder="Time (hrs)" />
-                <select class="form-control mt-2 status" onchange="validateTask(this)" />
+                <select id='statusForm' class="form-control mt-2 status" onchange="validateTask(this)" />
                     <option value="In Queue">In Queue</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Complete">Complete</option>
