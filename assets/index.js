@@ -41,7 +41,16 @@ function searchProjects() {
 // Invoked when user inputs something in the Search Bar of Search Projects Tab
 function searchProjects_search(searchText, projectId) {
     const changedURL = "?searchText=" + encodeURIComponent(searchText) + "&projectId=" + projectId;
-    history.pushState(null, null, changedURL);
+
+    if(searchText == "" || searchText == undefined) {
+        const currentURL = window.location.href; 
+        const url = new URL(currentURL);
+        const baseURL = url.origin + url.pathname;
+        console.log(baseURL);
+        history.pushState(null, null, baseURL);
+    } else {
+        history.pushState(null, null, changedURL);
+    }
 
     const url = "https://hook.us1.make.com/0xllmacanbr8nzj6jfpwler92no74cm5?search=" + encodeURIComponent(searchText) + "&projectId=" + projectId;
 
