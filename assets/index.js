@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     projectSelect_search.addEventListener("change", function() {
         console.log("EventListener for Project Search Selecting. Value: ", this.value);
         fetchTasks_search(this.value);
-        initializeMultiselect();
+        // initializeMultiselect();
         // fetchUserList(this.value);
     });
 });
@@ -126,9 +126,21 @@ function fetchTasks_search(projectId) {
             </div>`;
             tasksDiv_search.innerHTML += taskHtml;
 
-            if(localStorage.key(0)) {
-                const nthId = localStorage.key(0);
-                document.getElementById(nthId).click();
+            // if(localStorage.key(0)) {
+            //     console.log("localStorage Status: ", localStorage.key(0));
+            //     const nthId = localStorage.key(0);
+            //     document.getElementById(nthId).click();
+            // }
+
+            // Iterate through all keys and check for "startTime"
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.includes("startTime")) {
+                    console.log("A key containing 'startTime' was found in localStorage.");
+                    const nthId = localStorage.key(i);
+                    document.getElementById(nthId).click();
+                    break; // Exit the loop once a key is found
+                }
             }
         });
     })
